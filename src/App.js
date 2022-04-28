@@ -20,8 +20,8 @@ export default function App() {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
   const [showModal, setShowModal] = useState(false);
-  const [modalLargeImage, setModalLargeImage] = useState('');
-  const [modalLargeAlt, setModalLargeAlt] = useState('');
+  const [modalLargeImage, setModalLargeImage] = useState([]);
+  const [modalLargeAlt, setModalLargeAlt] = useState([]);
 
 
 
@@ -53,31 +53,28 @@ export default function App() {
 
  const handleOpenModal = (largeImageURL, tags) => {
    toggleModal();
-   setModalLargeImage(largeImageURL);
-   setModalLargeAlt(tags);
+   setModalLargeImage(largeImageURL)
+   setModalLargeAlt(tags)
   };
 
     return (
       <>
-
         <GlobalStyle />
 
         <Container>
-<ToastContainer autoClose={3000}/>
+          <ToastContainer autoClose={3000}/>
           <Searchbar onSubmit={setImageName} />
           {status === 'idle' ? (<h1>Введите название картинки</h1>) : error}
           {status ==='pending'?(<Loader/>):error}
           {status === 'rejected' ? (<ToastContainer autoClose={3000}/>) : error}
-{images.length >0&&
+          {images.length >0&&
             (<>
             <ImageGallery imageName={images} onClick={handleOpenModal}/>
           <Button click={incrementPrevPage} text={"prev page"}/>
           <Button click={incrementNextPage} text={"next page"}/>
             </>)}
           {showModal && <Modal src={modalLargeImage} alt={modalLargeAlt} onClose={toggleModal} />}
-
-        </Container>
-
+       </Container>
   </>
     );
   }
