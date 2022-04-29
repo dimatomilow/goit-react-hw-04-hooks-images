@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import propTypes from 'prop-types';
 import { OverlayStyled,ModalStyled } from './ModalStyled';
 
-const modalRoot = document.querySelector('#modal-root');
+const modalRoot = document.getElementById('modal-root');
 
 class Modal extends Component {
   static = {
